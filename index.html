@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagination</title>
+    <style>
+        .post {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
 </head>
-
 <body>
-    <h2>This is designed to display the Pagination</h2>
-    <p>
-        Default code has been
-        loaded into the Editor.
-    </p>
-</body>
+    <h1>Paginated Posts</h1>
+    <div id="post-container">
+        <p>Loading posts...</p>
+    </div>
+    <button id="prev-btn" disabled>Previous</button>
+    <button id="next-btn">Next</button>
 
+    <script src="pagination.js"></script>
+</body>
 </html>
