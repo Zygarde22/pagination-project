@@ -5,7 +5,17 @@ const postContainer = document.getElementById("post-container");
 const prevButton = document.getElementById("prev-btn");
 const nextButton = document.getElementById("next-btn");
 
+let lastRequestTime = 0;
+const RATE_LIMIT_DELAY = 2000; // 2 second
+
 async function fetchPosts(page) {
+    const currentTime = Date.now();
+    if (currentTime - lastRequestTime < RATE_LIMIT_DELAY) {
+        console.warn("Too many requests! Please wait.");
+        return;
+    }
+    lastRequestTime = currentTime;
+
     const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`;
 
     try {
@@ -35,7 +45,7 @@ function renderPosts(posts) {
     prevButton.disabled = currentPage === 1;
 }
 
-// Button event listeners
+// Button event listeners with rate-limited fetch
 prevButton.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
